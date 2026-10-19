@@ -1,0 +1,81 @@
+const readline = require('readline');
+
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
+// Fungsi void untuk mencetak nama dan asal di paling atas program
+function cetakIdentitas() {
+    console.log("---------------------");
+    console.log("| Azhar Rizki Zulma |");
+    console.log("|      Bintaro      |");
+    console.log("---------------------");
+}
+
+// Fungsi utama dengan 2 parameter dan initial value (default value)
+function hitung(a = 10, b = 5, operator) {
+    switch (operator) {
+        case '+':
+            return a + b;
+        case '-':
+            return a - b;
+        case '*':
+            return a * b;
+        case '/':
+            return b !== 0 ? a / b : "Tidak terdefinisi (pembagian dengan nol)";
+        case '%':
+            return b !== 0 ? a % b : "Tidak terdefinisi (modulus dengan nol)";
+        default:
+            return null;
+    }
+}
+
+// Fungsi untuk menjalankan program secara berulang
+function mulaiProgram() {
+    rl.question("Masukkan Menu(+|-|/|*|%|stop): ", (menu) => {
+        let pilihan = menu.trim().toLowerCase();
+
+        if (pilihan === 'stop') {
+            console.log("Program Berhenti, Terima Kasih telah menggunakan program saya.");
+            rl.close();
+            return;
+        }
+
+        if (!['+', '-', '*', '/', '%'].includes(pilihan)) {
+            console.log("Menu tidak valid, silakan coba lagi.\n");
+            return mulaiProgram();
+        }
+
+        rl.question("Masukkan Nilai 1: ", (input1) => {
+            rl.question("Masukkan Nilai 2: ", (input2) => {
+                // Menggunakan nilai yang diinput user, atau fallback ke initial value jika kosong
+                let nilai1 = input1.trim() === "" ? undefined : Number(input1);
+                let nilai2 = input2.trim() === "" ? undefined : Number(input2);
+
+                let hasil = hitung(nilai1, nilai2, pilihan);
+
+                // Format cetak hasil
+                let namaOperasi = "";
+                if (pilihan === '+') namaOperasi = "Penjumlahan";
+                else if (pilihan === '-') namaOperasi = "Pengurangan";
+                else if (pilihan === '*') namaOperasi = "Perkalian";
+                else if (pilihan === '/') namaOperasi = "Pembagian";
+                else if (pilihan === '%') namaOperasi = "Modulus";
+
+                // Mengambil nilai aktual yang digunakan (memperhitungkan initial value)
+                let aAktual = (input1.trim() === "") ? 10 : nilai1;
+                let bAktual = (input2.trim() === "") ? 5 : nilai2;
+
+                console.log(`Hasil ${namaOperasi} ${aAktual} ${pilihan} ${bAktual} adalah ${hasil}\n`);
+
+                // Mengulang program kembali
+                mulaiProgram();
+            });
+        });
+    });
+}
+
+// Eksekusi Program
+cetakIdentitas();
+mulaiProgram();
