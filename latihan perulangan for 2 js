@@ -1,0 +1,9 @@
+let maxVal = 7;
+
+for (let i = maxVal; i >= 1; i--) {
+    console.log(String(i).repeat(i));
+}
+
+for (let i = 2; i <= maxVal; i++) {
+    console.log(String(i).repeat(i));
+}

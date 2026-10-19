@@ -1,0 +1,6 @@
+// Ubah angka di variabel maxVal sesuai keinginan
+let maxVal = 7;
+
+for (let i = maxVal; i >= 1; i--) {
+    console.log(String(i).repeat(i));
+}
