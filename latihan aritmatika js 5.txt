@@ -1,0 +1,58 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("--- Masukkan Data Barang ---");
+        
+        System.out.print("Nama Barang 1 : ");
+        String nama1 = scanner.nextLine();
+        System.out.print("Harga Barang 1: ");
+        double harga1 = scanner.nextDouble();
+        System.out.print("Jumlah Barang 1: ");
+        int jml1 = scanner.nextInt();
+        scanner.nextLine(); // membersihkan buffer
+
+        System.out.print("Nama Barang 2 : ");
+        String nama2 = scanner.nextLine();
+        System.out.print("Harga Barang 2: ");
+        double harga2 = scanner.nextDouble();
+        System.out.print("Jumlah Barang 2: ");
+        int jml2 = scanner.nextInt();
+        scanner.nextLine();
+
+        System.out.print("Nama Barang 3 : ");
+        String nama3 = scanner.nextLine();
+        System.out.print("Harga Barang 3: ");
+        double harga3 = scanner.nextDouble();
+        System.out.print("Jumlah Barang 3: ");
+        int jml3 = scanner.nextInt();
+
+        double sub1 = harga1 * jml1;
+        double sub2 = harga2 * jml2;
+        double sub3 = harga3 * jml3;
+        double totalKotor = sub1 + sub2 + sub3;
+
+        double diskon = totalKotor * 0.10;
+        double setelahDiskon = totalKotor - diskon;
+        double ppn = setelahDiskon * 0.11;
+        double totalAkhir = setelahDiskon + ppn;
+
+        System.out.println("\n========================================");
+        System.out.println("              STRUK BELANJA             ");
+        System.out.println("========================================");
+        System.out.printf("%-12s x%-3d Rp %,10.2f\n", nama1, jml1, sub1);
+        System.out.printf("%-12s x%-3d Rp %,10.2f\n", nama2, jml2, sub2);
+        System.out.printf("%-12s x%-3d Rp %,10.2f\n", nama3, jml3, sub3);
+        System.out.println("----------------------------------------");
+        System.out.printf("Total Kotor   : Rp %,10.2f\n", totalKotor);
+        System.out.printf("Diskon 10%    : Rp %,10.2f\n", diskon);
+        System.out.printf("PPN 11%       : Rp %,10.2f\n", ppn);
+        System.out.println("----------------------------------------");
+        System.out.printf("Total Akhir   : Rp %,10.2f\n", totalAkhir);
+        System.out.println("========================================");
+
+        scanner.close();
+    }
+}

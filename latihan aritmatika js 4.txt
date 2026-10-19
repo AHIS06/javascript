@@ -1,0 +1,22 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Masukkan nama lengkap: ");
+        String nama = scanner.nextLine();
+
+        // Bersihkan spasi di awal/akhir untuk perhitungan karakter yang akurat
+        String namaBersih = nama.trim();
+
+        System.out.println("1. Kapital semua: " + nama.toUpperCase());
+        System.out.println("2. Jumlah karakter: " + namaBersih.length());
+        System.out.println("3. Karakter pertama: " + namaBersih.charAt(0));
+        System.out.println("4. Karakter terakhir: " + namaBersih.charAt(namaBersih.length() - 1));
+        System.out.println("5. Memuat kata 'aulia'? " + nama.toLowerCase().contains("aulia"));
+        System.out.println("6. Ganti spasi dengan '_': " + nama.replace(' ', '_'));
+
+        scanner.close();
+    }
+}

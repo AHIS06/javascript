@@ -1,0 +1,62 @@
+<?php
+$nilaiMap = [
+    "A" => 4.00,
+    "A-" => 3.75,
+    "B+" => 3.50,
+    "B" => 3.00,
+    "B-" => 2.75,
+    "C+" => 2.50,
+    "C" => 2.00,
+    "C-" => 1.75,
+    "D" => 1.50,
+    "E" => 1.20
+];
+
+function getPredikat($rataRata, $nilaiMap) {
+    $closest = "E";
+    $minDiff = INF;
+    
+    foreach ($nilaiMap as $huruf => $angka) {
+        $diff = abs($rataRata - $angka);
+        if ($diff < $minDiff) {
+            $minDiff = $diff;
+            $closest = $huruf;
+        }
+    }
+    return $closest;
+}
+
+function hitungRataRataNilai($nilaiMap) {
+    $totalNilai = 0;
+    $jumlahInput = 0;
+
+    while (true) {
+        $input = trim(readline("Masukkan Kategori Nilai (Tekan Enter Untuk Berhenti): "));
+        
+        if ($input === "") {
+            break;
+        }
+
+        $kategori = strtoupper($input);
+        
+        if (isset($nilaiMap[$kategori])) {
+            $totalNilai += $nilaiMap[$kategori];
+            $jumlahInput++;
+        } else {
+            echo "Kategori nilai tidak valid!\n";
+        }
+    }
+
+    if ($jumlahInput === 0) {
+        echo "Tidak ada nilai yang dimasukkan.\n";
+        return;
+    }
+
+    $rataRata = $totalNilai / $jumlahInput;
+    $predikat = getPredikat($rataRata, $nilaiMap);
+
+    echo "Rata-rata nilainya adalah " . number_format($rataRata, 2) . " dengan Predikat $predikat\n";
+}
+
+hitungRataRataNilai($nilaiMap);
+?>

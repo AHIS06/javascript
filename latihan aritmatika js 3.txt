@@ -1,0 +1,23 @@
+public class Main {
+    public static void main(String[] args) {
+        // a
+        int a = 10, b = 3;
+        System.out.println(a / b + " " + a % b + " " + (double) a / b);
+
+        // b
+        int x = 5;
+        int y = x++ + ++x;
+        System.out.println(x + " " + y);
+
+        // c
+        System.out.println(1 + 2 + "3" + 4 + 5);
+
+        // d
+        System.out.println('A' + 'B');
+        System.out.println("" + 'A' + 'B');
+
+        // e
+        boolean hasil = (5 > 3) && !(2 > 4) || (10 / 2 == 3);
+        System.out.println(hasil);
+    }
+}

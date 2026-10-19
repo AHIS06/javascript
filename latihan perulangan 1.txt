@@ -1,0 +1,13 @@
+let lanjut = "Y";
+
+while (lanjut.toUpperCase() === "Y") {
+    let angka = parseInt(prompt("Masukkan Angka Bebas: "));
+    
+    let jenis = (angka % 2 === 0) ? "genap" : "ganjil";
+    console.log(`Angka ${angka} merupakan ${jenis}`);
+    
+    lanjut = prompt("Ingin mengulanginya lagi? (Y/N): ");
+}
+
+console.log("Program Berhenti");
+console.log("Terima kasih telah menggunakan program saya ^^");

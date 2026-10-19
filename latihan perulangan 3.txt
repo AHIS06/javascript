@@ -1,0 +1,60 @@
+const nilaiMap = {
+    "A": 4.00,
+    "A-": 3.75,
+    "B+": 3.50,
+    "B": 3.00,
+    "B-": 2.75,
+    "C+": 2.50,
+    "C": 2.00,
+    "C-": 1.75,
+    "D": 1.50,
+    "E": 1.20
+};
+
+function getPredikat(rataRata) {
+    let closest = "E";
+    let minDiff = Infinity;
+    
+    for (let [huruf, angka] of Object.entries(nilaiMap)) {
+        let diff = Math.abs(rataRata - angka);
+        if (diff < minDiff) {
+            minDiff = diff;
+            closest = huruf;
+        }
+    }
+    return closest;
+}
+
+function hitungRataRataNilai() {
+    let totalNilai = 0;
+    let jumlahInput = 0;
+
+    while (true) {
+        let input = prompt("Masukkan Kategori Nilai (Tekan Enter Untuk Berhenti):");
+        
+        if (input === null || input.trim() === "") {
+            break;
+        }
+
+        let kategori = input.trim().toUpperCase();
+        
+        if (nilaiMap.hasOwnProperty(kategori)) {
+            totalNilai += nilaiMap[kategori];
+            jumlahInput++;
+        } else {
+            console.log("Kategori nilai tidak valid! Masukkan sesuai daftar (A, A-, B+, dll).");
+        }
+    }
+
+    if (jumlahInput === 0) {
+        console.log("Tidak ada nilai yang dimasukkan.");
+        return;
+    }
+
+    let rataRata = totalNilai / jumlahInput;
+    let predikat = getPredikat(rataRata);
+
+    console.log(`Rata-rata nilainya adalah ${rataRata.toFixed(2)} dengan Predikat ${predikat}`);
+}
+
+hitungRataRataNilai();

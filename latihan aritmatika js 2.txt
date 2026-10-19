@@ -1,0 +1,19 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Total detik : ");
+        int totalDetik = scanner.nextInt();
+
+        int jam = totalDetik / 3600;
+        int sisaDetik = totalDetik % 3600;
+        int menit = sisaDetik / 60;
+        int detik = sisaDetik % 60;
+
+        System.out.println("Hasil       : " + jam + " jam " + menit + " menit " + detik + " detik");
+        
+        scanner.close();
+    }
+}

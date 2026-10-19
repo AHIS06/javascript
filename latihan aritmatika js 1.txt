@@ -1,0 +1,21 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Bilangan 1 : ");
+        int bil1 = scanner.nextInt();
+
+        System.out.print("Bilangan 2 : ");
+        int bil2 = scanner.nextInt();
+
+        System.out.println(bil1 + " + " + bil2 + " = " + (bil1 + bil2));
+        System.out.println(bil1 + " - " + bil2 + " = " + (bil1 - bil2));
+        System.out.println(bil1 + " * " + bil2 + " = " + (bil1 * bil2));
+        System.out.printf("%d / %d = %.2f\n", bil1, bil2, (double) bil1 / bil2);
+        System.out.println(bil1 + " % " + bil2 + " = " + (bil1 % bil2));
+        
+        scanner.close();
+    }
+}

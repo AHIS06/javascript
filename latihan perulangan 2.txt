@@ -1,0 +1,22 @@
+let lanjut = "Y";
+
+while (lanjut.toUpperCase() === "Y") {
+    let a = parseInt(prompt("Masukkan Sisi A:"));
+    let b = parseInt(prompt("Masukkan Sisi B:"));
+    let c = parseInt(prompt("Masukkan Sisi C:"));
+
+    let jenis = "";
+    if (a === b && b === c) {
+        jenis = "Merupakan Segitiga Sama Sisi";
+    } else if (a === b || b === c || a === c) {
+        jenis = "Merupakan Segitiga Sama Kaki";
+    } else {
+        jenis = "Merupakan Segitiga Sembarang";
+    }
+
+    console.log(jenis);
+    lanjut = prompt("Ingin mengulanginya lagi? Y/N:");
+}
+
+console.log("Program Berhenti");
+console.log("Terima kasih telah menggunakan program saya ^^");
