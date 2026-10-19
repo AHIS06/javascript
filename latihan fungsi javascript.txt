@@ -8,8 +8,8 @@ const rl = readline.createInterface({
 // Fungsi void untuk mencetak nama dan asal di paling atas program
 function cetakIdentitas() {
     console.log("---------------------");
-    console.log("| Azhar Rizki Zulma |");
-    console.log("|      Bintaro      |");
+    console.log("|      Harits       |");
+    console.log("|      pasming      |");
     console.log("---------------------");
 }
 
