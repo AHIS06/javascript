@@ -5,30 +5,37 @@ const rl = readline.createInterface({
     output: process.stdout
 });
 
-// Fungsi void untuk mencetak nama dan asal di paling atas program
+// Fungsi void untuk mencetak identitas di paling atas
 function cetakIdentitas() {
     console.log("---------------------");
-    console.log("|      Harits       |");
-    console.log("|      pasming      |");
+    console.log("|     Harits        |");
+    console.log("|     pasming       |");
     console.log("---------------------");
 }
 
-// Fungsi utama dengan 2 parameter dan initial value (default value)
-function hitung(a = 10, b = 5, operator) {
-    switch (operator) {
-        case '+':
-            return a + b;
-        case '-':
-            return a - b;
-        case '*':
-            return a * b;
-        case '/':
-            return b !== 0 ? a / b : "Tidak terdefinisi (pembagian dengan nol)";
-        case '%':
-            return b !== 0 ? a % b : "Tidak terdefinisi (modulus dengan nol)";
-        default:
-            return null;
-    }
+// 1. Fungsi Penjumlahan
+function tambah(a = 10, b = 5) {
+    return a + b;
+}
+
+// 2. Fungsi Pengurangan
+function kurang(a = 10, b = 5) {
+    return a - b;
+}
+
+// 3. Fungsi Perkalian
+function kali(a = 10, b = 5) {
+    return a * b;
+}
+
+// 4. Fungsi Pembagian
+function bagi(a = 10, b = 5) {
+    return b !== 0 ? a / b : "Tidak terdefinisi (pembagian dengan nol)";
+}
+
+// 5. Fungsi Modulus
+function modulus(a = 10, b = 5) {
+    return b !== 0 ? a % b : "Tidak terdefinisi (modulus dengan nol)";
 }
 
 // Fungsi untuk menjalankan program secara berulang
@@ -49,21 +56,31 @@ function mulaiProgram() {
 
         rl.question("Masukkan Nilai 1: ", (input1) => {
             rl.question("Masukkan Nilai 2: ", (input2) => {
-                // Menggunakan nilai yang diinput user, atau fallback ke initial value jika kosong
                 let nilai1 = input1.trim() === "" ? undefined : Number(input1);
                 let nilai2 = input2.trim() === "" ? undefined : Number(input2);
 
-                let hasil = hitung(nilai1, nilai2, pilihan);
-
-                // Format cetak hasil
+                let hasil;
                 let namaOperasi = "";
-                if (pilihan === '+') namaOperasi = "Penjumlahan";
-                else if (pilihan === '-') namaOperasi = "Pengurangan";
-                else if (pilihan === '*') namaOperasi = "Perkalian";
-                else if (pilihan === '/') namaOperasi = "Pembagian";
-                else if (pilihan === '%') namaOperasi = "Modulus";
 
-                // Mengambil nilai aktual yang digunakan (memperhitungkan initial value)
+                // Menentukan fungsi mana yang akan dipanggil berdasarkan input user
+                if (pilihan === '+') {
+                    hasil = tambah(nilai1, nilai2);
+                    namaOperasi = "Penjumlahan";
+                } else if (pilihan === '-') {
+                    hasil = kurang(nilai1, nilai2);
+                    namaOperasi = "Pengurangan";
+                } else if (pilihan === '*') {
+                    hasil = kali(nilai1, nilai2);
+                    namaOperasi = "Perkalian";
+                } else if (pilihan === '/') {
+                    hasil = bagi(nilai1, nilai2);
+                    namaOperasi = "Pembagian";
+                } else if (pilihan === '%') {
+                    hasil = modulus(nilai1, nilai2);
+                    namaOperasi = "Modulus";
+                }
+
+                // Mengambil nilai aktual yang digunakan untuk ditampilkan pada console.log
                 let aAktual = (input1.trim() === "") ? 10 : nilai1;
                 let bAktual = (input2.trim() === "") ? 5 : nilai2;
 
