@@ -1,0 +1,48 @@
+const readline = require('readline');
+
+// Membuat interface untuk membaca input dari terminal
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
+// Definisi Class Mahasiswa
+class Mahasiswa {
+    constructor(nama, nim, jurusan, universitas) {
+        this.nama = nama;
+        this.nim = nim;
+        this.jurusan = jurusan;
+        this.universitas = universitas;
+    }
+
+    // Method untuk menampilkan biodata
+    tampilkanBiodata() {
+        console.log("\n==============================");
+        console.log("       BIODATA MAHASISWA      ");
+        console.log("==============================");
+        console.log(`Nama       : ${this.nama}`);
+        console.log(`NIM        : ${this.nim}`);
+        console.log(`Jurusan    : ${this.jurusan}`);
+        console.log(`Universitas: ${this.universitas}`);
+        console.log("==============================");
+    }
+}
+
+// Proses pengambilan input dari user secara berurutan
+rl.question('Masukkan Nama: ', (nama) => {
+    rl.question('Masukkan NIM: ', (nim) => {
+        rl.question('Masukkan Jurusan: ', (jurusan) => {
+            rl.question('Masukkan Universitas: ', (universitas) => {
+                
+                // Membuat objek (instansiasi) dari class Mahasiswa menggunakan data dari user
+                const mhs = new Mahasiswa(nama, nim, jurusan, universitas);
+
+                // Memanggil method untuk menampilkan biodata
+                mhs.tampilkanBiodata();
+
+                // Menutup interface readline
+                rl.close();
+            });
+        });
+    });
+});

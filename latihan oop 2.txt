@@ -1,0 +1,115 @@
+const readline = require('readline');
+
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
+class Employee {
+    constructor() {
+        this._nama = "None";
+        this._nilai = "None";
+    }
+
+    // Getter untuk Nama
+    get nama() {
+        return this._nama;
+    }
+
+    // Setter untuk Nama
+    set nama(namaBaru) {
+        this._nama = namaBaru;
+    }
+
+    // Getter untuk Nilai
+    get nilai() {
+        return this._nilai;
+    }
+
+    // Setter untuk Nilai
+    set nilai(nilaiBaru) {
+        this._nilai = nilaiBaru;
+    }
+
+    // Method untuk menghapus (mereset) data
+    hapusData() {
+        this._nama = "None";
+        this._nilai = "None";
+    }
+}
+
+const emp = new Employee();
+
+function tampilkanMenu() {
+    console.log("\n===== Program OOP =====");
+    console.log("1. Mendeklarasikan Objek");
+    console.log("2. Menampilkan Objek");
+    console.log("3. Merubah Nilai Objek");
+    console.log("4. Menghapus Objek");
+    console.log("5. Keluar Dari Program");
+    
+    rl.question("Masukkan Pilihan Berupa Angka (1/2/3/4/5): ", (pilihan) => {
+        prosesMenu(pilihan.trim());
+    });
+}
+
+function prosesMenu(pilihan) {
+    switch (pilihan) {
+        case '1':
+            rl.question("Masukkan Namamu: ", (namaInput) => {
+                rl.question("Masukkan Nilaimu: ", (nilaiInput) => {
+                    emp.nama = namaInput;
+                    emp.nilai = nilaiInput;
+                    console.log("Data Berhasil Ditambahkan");
+                    tampilkanMenu();
+                });
+            });
+            break;
+
+        case '2':
+            console.log(`\nNama: ${emp.nama}`);
+            console.log(`Nilai: ${emp.nilai}`);
+            tampilkanMenu();
+            break;
+
+        case '3':
+            rl.question("Apa yang ingin diubah (Nama/Nilai): ", (target) => {
+                const targetLower = target.trim().toLowerCase();
+                if (targetLower === 'nama') {
+                    rl.question("Masukkan Nama Baru: ", (namaBaru) => {
+                        emp.nama = namaBaru;
+                        console.log("Data Nama Berhasil Dirubah");
+                        tampilkanMenu();
+                    });
+                } else if (targetLower === 'nilai') {
+                    rl.question("Masukkan Nilai: ", (nilaiBaru) => {
+                        emp.nilai = nilaiBaru;
+                        console.log("Data Nilai Berhasil Dirubah");
+                        tampilkanMenu();
+                    });
+                } else {
+                    console.log("Pilihan tidak valid.");
+                    tampilkanMenu();
+                }
+            });
+            break;
+
+        case '4':
+            emp.hapusData();
+            console.log("Data Berhasil Dihapus");
+            tampilkanMenu();
+            break;
+
+        case '5':
+            console.log("Terima Kasih Sudah Menggunakan Program Saya");
+            rl.close();
+            break;
+
+        default:
+            console.log("Pilihan tidak valid, silakan masukkan angka 1-5.");
+            tampilkanMenu();
+            break;
+    }
+}
+
+tampilkanMenu();
